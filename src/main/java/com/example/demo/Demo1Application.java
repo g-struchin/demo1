@@ -1,7 +1,7 @@
 package com.example.demo;
 
 import com.example.demo.openweathermap.DateList;
-import com.example.demo.openweathermap.RequestData;
+import com.example.demo.openweathermap.RequestQuoteOWM;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -29,16 +29,16 @@ public class Demo1Application {
     @Bean
     public CommandLineRunner run(RestTemplate restTemplate) throws Exception {
         return args -> {
-            RequestData requestData = restTemplate.getForObject( "https://api.openweathermap.org/data/2.5/forecast/daily?q=Moscow&appid=34e1aea99c1fdd26f9a980501f000ce5", RequestData.class);
-            log.info(requestData.getCity().getName());
-            ArrayList<DateList> list = requestData.getList();
-            if (requestData.getList().isEmpty())
+            RequestQuoteOWM requestQuoteOWM = restTemplate.getForObject( "https://api.openweathermap.org/data/2.5/forecast/daily?q=Moscow&appid=34e1aea99c1fdd26f9a980501f000ce5", RequestQuoteOWM.class);
+            log.info(requestQuoteOWM.getCity().getName());
+            ArrayList<DateList> list = requestQuoteOWM.getList();
+            if (requestQuoteOWM.getList().isEmpty())
                 log.info("list.size()"+" = empty");
             else {
-                log.info(String.valueOf(requestData.getList().size()));
+                log.info(String.valueOf(requestQuoteOWM.getList().size()));
             }
-            for (int i = 0; i < requestData.getList().size(); i++)
-                log.info(i+" - "+requestData.getList().get(i).getTemp().getDay());
+            for (int i = 0; i < requestQuoteOWM.getList().size(); i++)
+                log.info(i+" - "+requestQuoteOWM.getList().get(i).getTemp().getDay());
         };
     }
 }

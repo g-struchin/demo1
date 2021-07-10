@@ -5,12 +5,12 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.ArrayList;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class RequestData {
+public class RequestQuoteOWM {
     private City city = new City();
     private int cod;
     private ArrayList<DateList> list = new ArrayList<DateList>();
 
-    public RequestData() {
+    public RequestQuoteOWM() {
     }
 
     public City getCity() {
